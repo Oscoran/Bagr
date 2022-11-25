@@ -1,0 +1,9 @@
+        cislo=0
+        cislo2=0
+        for i in range(len(nums)):
+            cislo=nums[i]
+            if(cislo+cislo2==target):
+                cislo
+                nums=[cislo2,cislo]
+                return nums
+            cislo2=nums[i]
