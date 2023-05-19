@@ -1,0 +1,35 @@
+#include "robotka.h"
+#define TRIDICKA_SERVO 4
+
+/*
+DOCS https://roboticsbrno.github.io/RB3204-RBCX-Robotka-library/modules.html
+*/
+
+void setup() {
+    rkConfig cfg;
+    rkSetup(cfg);
+    
+    int vzdalenost = 0;
+
+    while(true){
+        rkServosSetPosition(TRIDICKA_SERVO, 0);
+        delay(1000);
+        rkServosSetPosition(TRIDICKA_SERVO, 90);
+        delay(1000);
+    }
+
+    while(true){
+        int levty_senzor = rkIrLeft();  // nacti hodnotu z leveho IR senzoru
+         // nacti hodnotu z praveho IR senzoru
+         
+
+        printf("Levy senzor nameril hodnotu %d\n", levty_senzor);
+        if (levty_senzor<=90 and levty_senzor>=60) {
+            rkServosSetPosition(TRIDICKA_SERVO, 30);
+        }
+
+
+    }
+    
+}
+
