@@ -1,0 +1,18 @@
+#include "robotka.h"
+
+void setup() {
+    rkConfig cfg;
+    rkSetup(cfg);
+    
+    int vzdalenost = 0;
+
+    while(true){
+       vzdalenost = rkUltraMeasure(2);  // zmer vzdalenost a uloz ji do promenne
+       printf("Prekazka je vzdalena: %d\n", vzdalenost);
+       if(vzdalenost <= 40){
+        rkMotorsSetSpeed(20,20);
+        delay(500);
+        rkMotorsSetSpeed(0,0);
+       }
+    }
+}
