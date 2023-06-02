@@ -1,0 +1,29 @@
+#include "robotka.h"
+
+void setup() {
+    rkConfig cfg;
+    rkSetup(cfg);
+    
+    int vzdalenost = 0;
+
+    while(true){
+        int levty_senzor = rkIrLeft();  // nacti hodnotu z leveho IR senzoru
+        delay(2000);
+
+        printf("Levy senzor nameril hodnotu %d\n", levty_senzor);
+        if(levty_senzor <=2500){  // naše barva
+            rkServosSetPosition(4,40);
+            delay(1000);
+            rkServosSetPosition(4,0);
+            delay(1000);
+        
+        }
+        if(levty_senzor >=2500){  // naše barva
+            rkServosSetPosition(4,-40);
+            delay(1000);
+            rkServosSetPosition(4,0);
+            delay(1000);
+        
+        }
+    }
+}
