@@ -4,26 +4,50 @@ void setup() {
     rkConfig cfg;
     rkSetup(cfg);
     
-    int vzdalenost = 0;
+    int x = 0;
+    int z = 1;
+    int y = 0;
 
     while(true){
+        int x = rkUltraMeasure();
+        rkMotorsSetSpeed(50,50);
         int levty_senzor = rkIrLeft();  // nacti hodnotu z leveho IR senzoru
-        delay(2000);
-
-        printf("Levy senzor nameril hodnotu %d\n", levty_senzor);
-        if(levty_senzor <=2500){  // naše barva
+        delay(1000);
+        if (x<=400){
+            switch (z)
+            {
+            case 1:
+                rkMotorsSetSpeed(50,-50);
+                delay(1000);
+                int z=2
+                break;
+            
+            case 2:
+                rkMotorsSetSpeed(-50,50);
+                delay(1000);
+                rkServosSetPosition(3,0);
+                delay(1000);
+                rkServosSetPosition(3,90);
+                int z=1
+                break;
+            } 
+        }   
+        if(y <=2500){  // naše barva
             rkServosSetPosition(4,40);
             delay(1000);
             rkServosSetPosition(4,0);
             delay(1000);
         
-        }
-        if(levty_senzor >=2500){  // naše barva
+            }
+        if(y >=2500){  // naše barva
             rkServosSetPosition(4,-40);
             delay(1000);
             rkServosSetPosition(4,0);
             delay(1000);
-        
         }
+        if(digitalRead(EXTRA_BUTTON1)==true){
+            exit(0);
+        }
+        
     }
 }
