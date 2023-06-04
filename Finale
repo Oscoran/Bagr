@@ -1,0 +1,128 @@
+#include "robotka.h"
+
+void setup() {
+    rkConfig cfg;
+    rkSetup(cfg);
+    
+    int x = 0; 
+    bool timevzhoyeni = false;
+    int y = 0;
+    
+    int spravny=0;
+    int spatny=0;
+
+    while (true){
+        if(rkButtonIsPressed(BTN_RIGHT, true)){
+                // cervena
+            int spravny =40;
+            int spatny=-40;
+            break;
+        }
+        else if(rkButtonIsPressed(BTN_LEFT, true)){ 
+               // modra
+            int spravny=-40 ;
+            int spatny=40;
+            break;
+        }
+
+    }
+
+    
+    /*int state = 0;
+    while(true) {
+        if(state == 0) rkMotorsDriveAsync(20000,2000,50, [&state](){state = 1;});
+         if(rkUltraMeasure(2)<400){
+            break;
+         }
+        if(state == 1) rkMotorsDriveAsync(20000,2000,-50, [&state](){state = 2;});
+        if(state == 2) {
+            rkServosSetPosition(3,90);
+            rkMotorsDrive(500,500,20);
+            rkServosSetPosition(3,0);
+            while(true){
+                rkLedGreen(1);
+                delay(1000);
+                rkLedGreen(0);
+                delay(1000);
+            }
+        }
+
+        if(y >=nase){  // naše barva
+            rkServosSetPosition(4,-40);
+            
+            rkServosSetPosition(4,0);
+            
+        
+        }
+        if(y <=nenase){  // naše barva
+            rkServosSetPosition(4,40);
+            
+            rkServosSetPosition(4,0);
+            
+        }
+        while(rkUltraMeasure(2)<400){
+            rkLedRed(1);
+        }
+        rkLedRed(0);
+    }
+   */
+        
+        
+        
+    
+    while(true){
+        int x = rkUltraMeasure(2);
+        printf("%d\n", x);
+        rkMotorsSetSpeed(50,50); 
+        int levty_senzor = rkIrLeft();  // nacti hodnotu z leveho IR senzoru
+         printf( "%d\n", levty_senzor);
+        
+        if (x<=400){0
+            if (timevzhoyeni=true){
+                rkServosSetPosition(3,-40);
+                delay(1000);
+                rkServosSetPosition(3,90);
+                timevzhoyeni=false;
+            }
+            if (timevzhoyeni=false){
+                timevzhoyeni=true;
+            }
+            rkMotorsSetSpeed(50,-50);
+            delay(2250);
+            rkMotorsSetSpeed(50,50);   
+            delay(500);
+            
+            
+
+            
+            
+            
+            
+        }
+
+        if(levty_senzor>1800){  // naše barva
+            rkServosSetPosition(4,40);
+            delay(500);
+            rkServosSetPosition(4,0);
+            
+        
+            }
+        if(levty_senzor <1800){  // vaše barva
+            rkServosSetPosition(4,-40);
+            delay(500);
+            rkServosSetPosition(4,0);
+            
+        }
+        
+        
+        
+    }
+    
+    while(true){
+       
+        int x = rkUltraMeasure(2);
+       
+        printf("%d\n", x);
+    }
+    
+}
